@@ -1,5 +1,7 @@
 import React from 'react';
 import { MessageCircle, Send } from 'lucide-react';
+import API_BASE_URL from "@/utils/api";
+
 
 const FloatingButtons = () => {
   return (
