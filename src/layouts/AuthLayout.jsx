@@ -1,12 +1,11 @@
+// src/layouts/AuthLayout.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import API_BASE_URL from "@/utils/api";
 
 const AuthLayout = ({ title, subtitle, children }) => {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        {/* Logo / Brand Name */}
         <div className="text-center">
           <Link to="/" className="inline-block">
             <h1 className="text-4xl md:text-5xl font-extrabold text-slate-800 tracking-tight">
@@ -27,11 +26,8 @@ const AuthLayout = ({ title, subtitle, children }) => {
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        {/* Main Card */}
         <div className="bg-white py-8 px-6 md:px-10 shadow-lg rounded-2xl border border-slate-200">
           {children}
-
-          {/* Back to home link */}
           <div className="mt-6 text-center text-sm">
             <Link
               to="/"
@@ -43,7 +39,6 @@ const AuthLayout = ({ title, subtitle, children }) => {
         </div>
       </div>
 
-      {/* Footer */}
       <div className="mt-auto text-center py-6 text-sm text-slate-500">
         © {new Date().getFullYear()} FuzzAds. All rights reserved.
       </div>
