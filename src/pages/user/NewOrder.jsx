@@ -1,8 +1,7 @@
 // src/pages/user/NewOrder.jsx
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import toast from 'react-hot-toast';
-import API_BASE_URL from "@/utils/api";
+import api from "@/utils/api"; // ✅ Updated to use our custom API instance
 import { useNavigate } from 'react-router-dom';
 
 const NewOrder = () => {
@@ -16,14 +15,16 @@ const NewOrder = () => {
     const fetchUserData = async () => {
       const token = localStorage.getItem('token');
       console.log('Token found:', !!token);
+      
       if (!token) {
         toast.error('Session expired. Please login again.');
         return;
       }
+      
       try {
-        const res = await axios.get(`${API_BASE_URL}/api/auth/user`, {
-          headers: { 'x-auth-token': token },
-        });
+        // ✅ Much cleaner! No need for the base URL or manual token headers
+        const res = await api.get('/api/auth/user');
+        
         console.log('User data from server:', res.data);
         setUserData({
           username: res.data.username || 'User',
@@ -42,10 +43,10 @@ const NewOrder = () => {
         });
       }
     };
+    
     fetchUserData();
   }, []);
 
-  // Only change: Navigate to real Add Funds page
   const handleAddFunds = () => {
     navigate('/panel/add-funds');
   };
