@@ -1,8 +1,6 @@
 // src/context/UserContext.jsx
 import React, { createContext, useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
-import API_BASE_URL from "@/utils/api";
-
+import api, { API_BASE_URL } from "@/utils/api"; // Updated import
 
 const UserContext = createContext();
 
@@ -13,8 +11,6 @@ export const UserProvider = ({ children }) => {
   const fetchUser = useCallback(async () => {
     const token = localStorage.getItem('token');
 
-    // ────────────────────────────────────────────────
-    // Debug logs – very helpful to understand the problem
     console.log('[UserContext] fetchUser called');
     console.log('  → Token exists?', !!token);
     console.log('  → Token length:', token?.length || 0);
@@ -30,13 +26,9 @@ export const UserProvider = ({ children }) => {
     setLoading(true);
 
     try {
-      const url = `${API_BASE_URL}/api/auth/user`;
-      console.log('  → Fetching:', url);
-      console.log('  → Sending header: x-auth-token (length:', token.length, ')');
-
-      const res = await axios.get(url, {
-        headers: { 'x-auth-token': token },
-      });
+      console.log('  → Fetching: /api/auth/user');
+      // Token is auto-injected by api.js
+      const res = await api.get('/api/auth/user');
 
       console.log('  → SUCCESS – status:', res.status);
       console.log('  → Received user data:', res.data);
@@ -54,8 +46,6 @@ export const UserProvider = ({ children }) => {
         console.error('     No response received – possible CORS / network issue');
       }
 
-      // Only remove token on clear authentication failures
-      // This prevents removing a valid token on temporary 500 errors
       if (err.response?.status === 401 || err.response?.status === 403) {
         console.warn('     Clearing token due to 401/403');
         localStorage.removeItem('token');
