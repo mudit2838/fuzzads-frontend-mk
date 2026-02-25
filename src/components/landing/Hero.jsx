@@ -2,10 +2,8 @@
 import React, { useState } from 'react';
 import { User, Lock } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import toast from 'react-hot-toast';
-import API_BASE_URL from "@/utils/api";
-
+import api, { API_BASE_URL } from "@/utils/api"; // Updated import
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -23,7 +21,7 @@ const Hero = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post(`${API_BASE_URL}/api/auth/login`, {
+      const res = await api.post('/api/auth/login', {
         username: formData.username,
         password: formData.password,
       });
@@ -31,7 +29,6 @@ const Hero = () => {
       const token = res.data.token;
       const userData = res.data.user;
 
-      // Always save to localStorage (survives refresh even if unchecked)
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(userData));
 
