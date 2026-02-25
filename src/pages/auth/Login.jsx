@@ -5,7 +5,7 @@ import { User, Lock } from 'lucide-react';
 import AuthLayout from '../../layouts/AuthLayout';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
-import API_BASE_URL from '../../utils/api';
+import API_BASE_URL from "@/utils/api";
 
 const Login = () => {
   const navigate = useNavigate();
