@@ -1,5 +1,6 @@
 // src/pages/auth/OtpVerify.jsx
 import React, { useState } from 'react';
+import API_BASE_URL from '../../utils/api';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
