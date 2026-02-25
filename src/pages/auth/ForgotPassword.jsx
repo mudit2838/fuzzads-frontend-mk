@@ -1,12 +1,10 @@
 // src/pages/auth/ForgotPassword.jsx
-
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Mail, Lock } from "lucide-react";
 import AuthLayout from "../../layouts/AuthLayout";
-import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-import API_BASE_URL from "@/utils/api";
+import api from "@/utils/api"; // Updated import
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
@@ -29,11 +27,7 @@ const ForgotPassword = () => {
     try {
       setLoading(true);
 
-      await axios.post(
-        `${API_BASE_URL}/api/auth/forgot-password`,
-        { email },
-        { timeout: 15000 }
-      );
+      await api.post('/api/auth/forgot-password', { email }, { timeout: 15000 });
 
       toast.success("OTP sent to your email!");
       setStep("otp");
@@ -64,15 +58,11 @@ const ForgotPassword = () => {
     try {
       setLoading(true);
 
-      await axios.post(
-        `${API_BASE_URL}/api/auth/reset-password`,
-        {
-          email,
-          otp,
-          newPassword,
-        },
-        { timeout: 15000 }
-      );
+      await api.post('/api/auth/reset-password', {
+        email,
+        otp,
+        newPassword,
+      }, { timeout: 15000 });
 
       toast.success("Password reset successful!");
 
