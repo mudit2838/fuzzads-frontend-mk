@@ -3,9 +3,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { User, Mail, Lock } from 'lucide-react';
 import AuthLayout from '../../layouts/AuthLayout';
-import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
-import API_BASE_URL from "@/utils/api";
+import api from "@/utils/api"; // Updated import
 
 const Register = () => {
   const navigate = useNavigate();
@@ -28,14 +27,14 @@ const Register = () => {
     }
 
     try {
-      await axios.post(`${API_BASE_URL}/api/auth/register`, {
+      // Much cleaner API call
+      await api.post('/api/auth/register', {
         username,
         email,
         password
       });
 
       toast.success("Registration Successful! Check your email for OTP.");
-      // Redirect to OTP verification page with email
       navigate('/verify-otp', { state: { email } });
     } catch (err) {
       console.error(err.response?.data);
