@@ -1,10 +1,9 @@
 // src/pages/auth/OtpVerify.jsx
 import React, { useState } from 'react';
-import API_BASE_URL from "@/utils/api";
 import { useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import AuthLayout from '../../layouts/AuthLayout';
+import api from "@/utils/api"; // Updated import
 
 const OtpVerify = () => {
   const [otp, setOtp] = useState('');
@@ -15,7 +14,7 @@ const OtpVerify = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${API_BASE_URL}/api/auth/verify-otp`, { email, otp });
+      await api.post('/api/auth/verify-otp', { email, otp });
       toast.success('Email verified successfully! You can now login.');
       navigate('/login');
     } catch (err) {
