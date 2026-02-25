@@ -1,7 +1,8 @@
 // src/context/UserContext.jsx
 import React, { createContext, useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import API_BASE_URL from '../utils/api';
+import API_BASE_URL from "@/utils/api";
+
 
 const UserContext = createContext();
 
