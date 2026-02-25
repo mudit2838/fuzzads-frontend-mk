@@ -4,7 +4,8 @@ import { User, Lock } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import API_BASE_URL from '../../utils/api';
+import API_BASE_URL from "@/utils/api";
+
 
 const Hero = () => {
   const navigate = useNavigate();
