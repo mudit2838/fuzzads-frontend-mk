@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import API_BASE_URL from '../utils/api';
+import API_BASE_URL from "@/utils/api";
 import { Search, Filter, Copy, ExternalLink } from 'lucide-react';
 
 
