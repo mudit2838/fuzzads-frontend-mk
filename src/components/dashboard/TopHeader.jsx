@@ -3,6 +3,8 @@ import React from 'react';
 import { Menu, User, LogOut, ChevronDown } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast'; // <-- 1. Import toast
+import API_BASE_URL from "@/utils/api";
+
 
 const TopHeader = ({ toggleSidebar }) => {
   const navigate = useNavigate();
